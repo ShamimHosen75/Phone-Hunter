@@ -13,7 +13,6 @@ const showPhone = (phone) => {
     for (const phone of first20Data){
         const phoneContainer =document.getElementById("phone-container");
         const div =document.createElement('div');
-        // console.log(phone.brand);
 
 
 div.classList.add('col-lg-4');
@@ -33,9 +32,9 @@ div.innerHTML = `
     }
 };
 
-// See Details Button
+// See Details Button with API Data Loaded
 const seeDetailsBtn = (slug) => {
-    error.innerHTML ="";
+    seeDetailsBtn.innerHTML ="";
     const url =`https://openapi.programming-hero.com/api/phone/${slug}`;
     fetch (url)
             .then (res => res.json())

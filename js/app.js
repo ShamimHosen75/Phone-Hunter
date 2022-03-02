@@ -8,14 +8,14 @@ const searchBrand = () => {
 };
 
 const showPhone = (data) => {
-    console.log(data.status);
+    // console.log(data.status);
     const phoneContainer =document.getElementById("phone-container");
     phoneContainer.innerHTML= '';
     if(data.status === false){
         phoneContainer.innerHTML=`<h2 class='text-center' style='margin: 0 auto'> No Result Found</h2>`;
     }
     const phone = data.data;
-    console.log(phone);
+    // console.log(phone);
     const first20Data = phone.slice(0, 20);
     for (const phone of first20Data){
         const div =document.createElement('div');
@@ -30,7 +30,7 @@ div.innerHTML = `
        <h5 class="card-title"> <b>Brand:</b> ${phone.brand}</h5>
         <p class="card-text"><b>Model:</b> ${phone.phone_name}</p>
         <button onclick="seeDetailsBtn('${phone.slug}')" 
-            class="btn btn-danger text-white">Details</button>
+            class="btn btn-danger text-white">More Details</button>
       </div>
   </div>
     `;
@@ -45,24 +45,24 @@ const seeDetailsBtn = (slug) => {
     fetch (url)
             .then (res => res.json())
             .then (data =>seeDetailsSection(data.data));
-    console.log(url);
+    // console.log(url);
 }
 
 // See Details Result 
 const seeDetailsSection =(allinfo) => {
-    console.log(allinfo)
-    const img = allinfo.image
+    // console.log(allinfo)
+    const img = allinfo.image;
+    console.log(img)
     const detailsContainer =document.getElementById("details-container");
     detailsContainer.innerHTML='';
     const div = document.createElement('div');
     div.classList.add('col-12');
     div.classList.add('mb-2');
     div.innerHTML =`
-    <div class="card border-info m-3>
-       
-    <div class=card-body>
-    <img src="${img}" style="width-14rem"; 
-    class="card-img-top w-50 mx-auto m-3">
+    <div class="card border-info p-3 mx-auto">
+    <img src="${img}" class="card-img-top w-25 mx-auto" alt="...">
+    <div class="card-body">
+    
         <h5 class="card-title">${allinfo.name}</h5>
         <h6 class="card-text"><b>Brand:</b> ${allinfo.brand}</h6>
         <p class="card-text"><b>Release Date:</b>${allinfo.releaseDate? allinfo.releaseDate: "Sorry, we didn't find the Release date"}</p>
@@ -79,7 +79,7 @@ const seeDetailsSection =(allinfo) => {
         <p class="card-text"><b>Radio:</b>${allinfo.others.Radio? allinfo.others.Radio: "Sorry, we didn't find the Radio"}</p>
         <p class="card-text"><b>USB:</b>${allinfo.others.USB? allinfo.others.USB: "Sorry, we didn't find the USB"}</p>
         <p class="card-text"><b>WLAN:</b>${allinfo.others.WLAN? allinfo.others.WLAN: "Sorry, we didn't find the WLAN"}</p>
-     </div>
+    </div>
     </div>
     `;
     detailsContainer.appendChild(div);
